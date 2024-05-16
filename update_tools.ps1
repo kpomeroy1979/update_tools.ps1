@@ -1,6 +1,7 @@
 # update_tools.ps1
 # A simple tool to iterate through c:\tools and update any software downloaded from github
-# requires git for windows installed and added to your execution path.
+# and install python dependencies at the same time (useful if you just reimaged your computer) 
+# requires git and python for windows installed and python.exe and git.exe added to your execution path.
 
 # define the directory where your tools are located. 
 $toolsDirectory = "C:\tools\"
@@ -13,6 +14,7 @@ foreach ($directory in $directories) {
     # Change directory into each directory
     Set-Location -Path $directory.FullName
 
-    # Run the command "git pull origin master" to update the software to the latest version
-    git pull origin master
+    # Run the command "pip3 install -r requirements.txt" and then run "git pull origin master" to 
+	# install dependencies and update the software to the latest version from github
+    pip3 install -r requirements.txt; git pull origin master
 }
